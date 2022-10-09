@@ -65,6 +65,13 @@ contract Wealth3 {
       Vaults[msg.sender].lastProofOfLife = block.timestamp;
       emit newProofOfLife(msg.sender, block.timestamp);
     }
+    function changeOwner (address _newOwner) public {
+      require(owner == msg.sender, "Ownership can only be changed by the owner");
+      owner = payable(_newOwner);
+    }
+    function getOwner() public view returns (address){
+      return owner;
+    }
     
     event newVault (Vault vault);
     event newDeposit(address userId, uint256 amount);
