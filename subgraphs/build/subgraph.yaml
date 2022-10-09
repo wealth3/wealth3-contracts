@@ -1,0 +1,30 @@
+specVersion: 0.0.4
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Wealth3
+    network: goerli
+    source:
+      address: "0x799A71c8a89572158cbAE2Eda280ad0be127450C"
+      abi: Wealth3
+      startBlock: 7736021
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - newDeposit
+        - newProofOfLife
+        - newVault
+      abis:
+        - name: Wealth3
+          file: Wealth3/abis/Wealth3.json
+      eventHandlers:
+        - event: newDeposit(address,uint256)
+          handler: handlenewDeposit
+        - event: newProofOfLife(address,uint256)
+          handler: handlenewProofOfLife
+        - event: newVault((uint256,uint256,uint256,uint256,address[],uint256[]))
+          handler: handlenewVault
+      file: Wealth3/Wealth3.wasm

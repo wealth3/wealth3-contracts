@@ -1,0 +1,10 @@
+scalar Address 
+type Vault @entity {
+  id: Bytes!
+  contractTime: BigInt!
+  proofOfLifeFreq: BigInt!
+  amount: BigInt!
+  lastProofOfLife: BigInt!
+  beneficiaries: [Bytes!] # address
+  distribution: [BigInt!] # uint256
+}
